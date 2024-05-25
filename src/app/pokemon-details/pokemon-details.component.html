@@ -1,0 +1,67 @@
+<div class="w-75 m-auto bg-dark rounded-5 text-white p-3">
+    @if (this.pokemon) {
+
+
+    <img [src]="this.pokemon.sprites.front_default" width="auto" height="250px" />
+    <h2>
+        Information
+    </h2>
+    <div class="d-flex">
+        <div class="col-md-6 p-2">
+            <mat-accordion>
+                <mat-expansion-panel class="bg-primary">
+                    <mat-expansion-panel-header class="bg-primary">
+                        <mat-panel-title>
+                            <h4>About</h4>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div>
+                        <p>Height: {{this.pokemon.height}}</p>
+                        <p>
+                            Weight: {{this.pokemon.weight}}
+                        </p>
+
+                        <p>
+                            <span>
+                                Abilities:
+                            </span>
+                            <span *ngFor="let ability of this.pokemon.abilities;index as i;">
+
+                                @if(i !== this.pokemon.abilities.length -1) {
+                                {{ability.ability.name}},
+                                } @else {
+                                {{ability.ability.name}}
+                                }
+                            </span>
+                        </p>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+
+        </div>
+        <div class="col-md-6 p-2">
+            <mat-accordion>
+                <mat-expansion-panel class="bg-success">
+                    <mat-expansion-panel-header class="bg-success">
+                        <mat-panel-title>
+                            <h4>Stats:</h4>
+
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="d-flex gap-3 flex-column">
+                        <div class="d-flex gap-3 align-items-center" *ngFor="let stat of this.pokemon.stats;">
+                            <span style="text-transform: uppercase;">
+                                {{stat.stat.name}}
+                            </span>
+                            <div class="progress w-100" role="progressbar" aria-label="Basic example"
+                                [ariaValueNow]="this.stat.base_stat" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: {{this.stat.base_stat}}%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </div>
+    }
+</div>
